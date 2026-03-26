@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1b4332; 
+            --gold: #1b4332;
+            --glass: rgba(255, 255, 255, 0.95);
+            --depth-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            overflow-x: hidden;
+            font-family: 'Lato', sans-serif;
+            background: #f9fafc;
+            color: #333;
+        }
+
+        .container {
+            perspective: 1200px;
+            padding: 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* 3D Image Header Section */
+        .header-3d {
+            position: relative;
+            width: 100%;
+            margin-bottom: 50px;
+            transform-style: preserve-3d;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            pointer-events: none;
+        }
+
+        .header-image {
+            align-content: center;
+            padding: 0px;
+            max-width: 100%;
+            height: auto;
+            width: auto;
+            display: block;
+            border-radius: 15px;
+            box-shadow: var(--depth-shadow);
+            transform: translateZ(15px);
+            border: 1px solid rgba(255,255,255,0.2);
+            pointer-events: auto;
+        }
+
+        .header-overlay {
+            position: absolute;
+            bottom: -30px;
+            left: 5%;
+            right: 5%;
+            background: var(--primary);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            transform: translateZ(50px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            text-align: center;
+            pointer-events: auto;
+        }
+
+        /* Card Layout */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 60px;
+        }
+
+        .card {
+            background: white;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            transition: all 0.4s ease;
+            border-top: 5px solid var(--gold);
+            transform-style: preserve-3d;
+            margin-bottom: 40px
+        }
+
+        .card:hover {
+            transform: translateY(-10px) translateZ(10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+         .card1 {
+            background: white;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            transition: all 0.4s ease;
+            border-left: 5px solid var(--gold);
+            transform-style: preserve-3d;
+            margin-bottom: 40px
+        }
+
+        .card1:hover {
+            transform: translateY(-10px) translateZ(10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .card2 {
+            background: white;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            transition: all 0.4s ease;
+            transform-style: preserve-3d;
+            margin-bottom: 40px
+        }
+
+        
+
+        .signature {
+            text-align: right;
+            font-weight: bold;
+            margin-top: 20px;
+            color: var(--primary);
+            font-style: normal;
+        }
+        /* Program List */
+        .program-section {
+            margin-top: 60px;
+            margin-bottom: 60px;
+            background: var(--glass);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .program-item {
+            border-bottom: 1px solid #eee;
+            padding: 20px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        
+        }
+        .program-itemla {
+            padding: 20px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        
+        }
+        
+
+
+.navbar {
+    position: sticky;
+    top: 20px; /* Floating effect */
+    z-index: 1000;
+    margin: 0 0%;
+}
+
+.nav-container {
+    background: var(--nav-bg);
+    padding: 20px 30px;
+    border-radius: 20px; /* Pill shape */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    backdrop-filter: blur(10px); /* Modern glass effect */
+    border-bottom: 3px solid var(--gold-accent);
+    margin-bottom: 30px;
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    gap: 10px;
+}
+
+.nav-logo img {
+    height: 40px;
+}
+
+.nav-logo span {
+    color: var(--primary);
+    font-weight: 800;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+    align-items: center;
+    margin: 0;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #444;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.nav-links a:hover {
+    color: var(--primary-green);
+}
+
+/* The "Apply Now" button in the Nav */
+.nav-cta {
+    background: var(--primary);
+    color: white !important;
+    padding: 10px 22px;
+    border-radius: 25px;
+    box-shadow: 0 4px 15px rgba(27, 67, 50, 0.2);
+}
+
+/* --- MOBILE RESPONSIVENESS --- */
+#nav-check { display: none; }
+.nav-btn { display: none; cursor: pointer; color: var(--primary-green); font-size: 1.5rem; }
+
+@media (max-width: 850px) {
+    .nav-btn { display: block; }
+    .nav-links {
+        position: absolute;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background: white;
+        flex-direction: column;
+        padding: 20px;
+        border-radius: 20px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        display: none; /* Hidden by default */
+    }
+    #nav-check:checked ~ .nav-links {
+        display: flex; /* Show when checkbox is clicked */
+    }
+}
+        
+       .button-wrapper {
+    	width: 100%;
+    	display: flex;
+    	justify-content: center;
+    	margin-top: auto; /* Pushes the button to the bottom while staying centered */
+		}
+
+        
+        .cta-button {
+        text-decoration: none;
+        background: var(--primary);
+        color: white;
+        padding: 15px 30px;
+        transition: all 0.4s ease;
+    	border-radius: 13px;
+    	border: none;
+    	font-weight: bold;
+    	cursor: pointer;
+        font-size: 1rem;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+		transform-style: preserve-3d;
+		}
+        .cta-button:hover {
+            transform: translateY(-10px) translateZ(10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            }
+
+        .program-item:last-child { border: none; }
+        
+        
+        .gallery-wrapper {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 5px;
+    width: 100%;
+}
+
+.gallery-wrapper img {
+    flex: 1;              /* Makes all 3 images the same width */
+    margin: 0; /* Resets default browser figure margins */
+    width: 100%;          /* Responsive width */
+    height: 180px;        /* Set a fixed height for consistency */
+    object-fit: cover;    /* Crops images to fit without stretching */
+    border-radius: 12px;  /* Matches your card's rounded look */
+    flex-direction: column;
+    align-items: center;
+    display: flex;
+ }  
+    
+    
+   
+
+/* The Caption */
+.card-caption {
+    text-align: center;
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.5;
+    margin-bottom: 25px;
+    padding: 0 10px;
+}
+
+        .badge {
+            background: #eef2f7;
+            padding: 6px 15px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        h1, h2, h3 { color: var(--primary); margin-top: 0; }
+        
+        @media (max-width: 768px) {
+            .header-overlay { position: static; transform: none; margin-top: 20px; width: 100%; left: 0; }
+            .program-item { flex-direction: column; align-items: flex-start; gap: 10px; }
+            .gallery-wrapper {
+        /* This allows items to move to a new line */
+        flex-wrap: wrap; 
+        justify-content: center;
+        gap: 20px; /* Increase gap slightly for vertical breathing room */
+    }
+
+    .gallery-item {
+        /* This forces each image to take up nearly half the width (2 per row) 
+           or use 100% for a full-width stack */
+        flex: 0 0 100%; 
+        max-width: 100%;
+    }
+
+    .gallery-item img {
+        /* Make images wider on mobile so they aren't skinny rectangles */
+        height: 200px; 
+    }
+    .map-container {
+        height: 250px; /* Makes the map slightly shorter on small screens */
+    }
+    .map-container iframe {
+        height: 100%;
+    }
+    }
+    
+    .contact-section {
+    padding: 35px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    transition: all 0.4s ease;
+    padding: 60px 10%;
+    background-color: #f9f9f9;
+    font-family: 'Lato',sans-serif;
+    
+}
+
+.contact-header {
+    text-align: center;
+    color: #003363; /* Dark navy */
+    font-size: 2rem;
+    margin-bottom: 40px;
+    border-bottom: 1px dashed #ccc;
+    padding-bottom: 20px;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two equal columns */
+    gap: 40px;
+}
+
+.contact-item {
+    margin-bottom: 25px;
+}
+
+.contact-item h3 {
+    color: #333;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.contact-item p, .contact-item a {
+    color: #555;
+    font-size: 0.95rem;
+    margin: 5px 0;
+    text-decoration: none;
+}
+
+.contact-item span {
+    margin: 0 15px; /* Spacing for the colon */
+    color: #888;
+}
+.location-strip {
+    background: var(--primary-green);
+    color: white;
+    padding: 30px;
+    text-align: center;
+    border-top: 4px solid var(--gold-accent);
+}
+
+.location-strip p {
+    font-size: 1.1rem;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* Social Media Icons Styling */
+.social-icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.social-icons a {
+    background: var(--primary);
+    color: white !important;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    transition: background 0.3s;
+}
+
+.social-icons a:hover {
+    background: #d4af37; /* Gold accent on hover */
+}
+map-container {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden; /* Prevents anything from sticking out */
+    border-radius: 20px; /* Matches your card style */
+    margin-top: 20px;
+}
+
+/* The actual Google Map iframe */
+.map-container iframe {
+    width: 100% !important; /* Forces it to stay inside the screen */
+    max-height: 100%;         /* You can adjust this height */
+    border: 0;
+    display: block;
+    margin-bottom: 30px;
+}
+
+/* Mobile View */
+@media (max-width: 768px) {
+    .contact-grid {
+        grid-template-columns: 1fr; /* Stack vertically on phones */
+    }
+}
+    
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <nav class="navbar">
+    <div class="nav-container">
+        <a href="#" class="nav-logo">
+            <img src="https://i.postimg.cc/fLSPmTT9/seal.png" alt="Al Hidaya Logo">
+            <span>Al Hidaya Islamic University</span>
+        </a>
+
+        <input type="checkbox" id="nav-check">
+        <label for="nav-check" class="nav-btn">
+            <i class="fas fa-bars"></i>
+        </label>
+
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Academics</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#" class="nav-cta">Apply Now</a></li>
+        </ul>
+    </div>
+</nav>
+    
+    <div>
+       
+            <img src="https://images2.imgbox.com/19/dd/Ap045IFY_o.jpg" alt="Al Hidaya University" class="header-image">
+        
+    </div>
+    
+    <h1 style= "text-align: center; margin-top: 40px;">Advancing Islamic Studies with Traditional Values</h1>
+        <p style= "text-align: center; font-size: 1.2rem;">Al Hidaya Islamic University has been set up where there is a need for technological advances in Islamic Studies without compromising the traditional ethics and values.</p>
+
+
+    <div class="card-grid">
+        <div class="card">
+            <h3>Our Mission</h3>
+            <p>Cultivating gifted scholars who provide timely solutions to civilization's problems through integrated education and research.</p>
+        </div>
+        <div class="card">
+            <h3>Our Vision</h3>
+            <p>Empowering individuals with Islamic values to excel spiritually and academically, becoming leaders for the global community.</p>
+        </div>
+    </div>
+
+<section id="message" class="bg-light">
+       <div class="card1">
+       <h2>President's Message</h2>
+            <p>"Al Hidaya Islamic University, an institution that enlightens the green valleys and hillsides in northern Malabar, has already dedicated many gifted scholars to the society. Currently, numerous students study in different faculties. The aim of the institution is to develop excellent scholars beneficial for the Islamic heritage and culture who, through integrated education, by understanding the markings of the era, could provide the civilization with timely solutions to their problems. The institution, which effectively performs in educational eminence, excels to national and international standards in academic and research domains."</p>
+            <div class="signature">- Sayyid Abbas Ali Shihab Thangal Balawi<br><small>President, AHIU</small></div>
+        </div>
+    </section>
+
+
+<div class="card2">
+    <div class="gallery-wrapper">
+        <figure>
+        <img src="https://images2.imgbox.com/a4/ac/9mwEQKew_o.jpg" alt="Description 1">
+        <figcaption style="Text-align: center; color: var(--primary); margin-top: 5px;">College of Islamic Shareea</figcaption>
+        </figure>
+        <figure>
+        <img src="https://images2.imgbox.com/2c/ce/NdD4tAYm_o.png" alt="Description 2">
+        <figcaption style="Text-align: center; color: var(--primary); margin-top: 5px;">Al Hidaya Library</figcaption>
+        </figure>
+        <figure>
+        <img src="https://images2.imgbox.com/62/dd/kdHlYNjV_o.jpg" alt="Description 3">
+        <figcaption style="Text-align: center; color: var(--primary); margin-top: 5px;">College of Hifz Studies</figcaption>
+        </figure>
+    </div>
+
+</div>
+
+
+
+    <div class="program-section">
+        <h2>Academic Offerings</h2>
+        
+        <div class="program-item">
+            <div>
+                <h4 style="margin:0">College of Islamic Sharia</h4>
+                <p style="margin:5px 0 0 0; font-size:1rem; color:#666;">An eight-year course in Islamic Studies comprising many disciplines in Islamic Sciences, including Quran Interpretation(Thafseer), Islamic Jurisprudence, Hadith, Arabic Language & Literature, Arabic Grammar & Morphology, Islamic Theology & Philosophy, Logic, Foundations of Hadith and Fiqh, Aqeeda and Islamic History. This course also includes school education from 8th grade to Undergraduate Degree courses.
+</p>
+            </div>
+            
+        </div>
+
+        <div class="program-item">
+            <div>
+                <h4 style="margin:0">College for Quran Memorization</h4>
+                <p style="margin:5px 0 0 0; font-size:1rem; color:#666;">Course for memorizing the Holy Quran with its rules (tajweed) in the qira’ath (recitation) of Hafs from Aasim, which takes a maximum of three years. The students, then, shall be eligible for admission to both the colleges of study, i.e. College of Islamic Sharia and College of Qur'an Studies.
+</p>
+            </div>
+           
+        </div>
+
+        <div class="program-itemla">
+            <div>
+                <h4 style="margin:0">College of Quran Studies</h4>
+                <p style="margin:5px 0 0 0; font-size:1rem; color:#666;">A course equivalent to Islamic Sharia, which focuses more on Quranic subjects and those who can enrol in this course should be a Hafiz (memorized the Holy Quran )
+</p>
+            </div>
+           
+        </div>
+                <div class="button-wrapper">
+        <a href="https://www.ahiu.in/applynow" class="cta-button">Apply Now</a>
+    </div>
+    </div>
+    
+    <section>
+    <h2 style="font-size: 1.8rem; margin-bottom: -10px; text-align: center;">Contact Us</h2>
+    
+    <div class="card-grid">
+        <div class="card">
+            <div class="contact-item">
+                <h3>General Manager</h3>
+                <p>Sinan Nizami <span>:</span> +(91) 9497167463</p>
+            </div>
+            <div class="contact-item">
+                <h3>Manager</h3>
+                <p>Rafi Nizami <span>:</span> +(91) 9447781050</p>
+            </div>
+            <div class="contact-item">
+                <h3>Academic Dean</h3>
+                <p>Sadiq Nizami <span>:</span> +(91) 9207488626</p>
+            </div>
+            <div class="contact-item">
+                <h3>College of Islamic Sharia</h3>
+                <p>Sadiq Nizami <span>:</span> +(91) 9207488626</p>
+                <p>Salih Darimi <span>:</span> +(91) 9048138660</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="contact-item">
+                <h3>College for Quran Memorization</h3>
+                <p>Sinan Nizami <span>:</span> +(91) 9497167463</p>
+            </div>
+            <div class="contact-item">
+                <h3>Centre for Research and Publication</h3>
+                <p>Muhsin Nizami <span>:</span> +(91) 7860000787</p>
+            </div>
+            <div class="contact-item">
+                <h3>Email</h3>
+                <a href="mailto:info@ahiu.in">info@ahiu.in</a><br>
+                <a href="mailto:ahiuofficial@gmail.com">ahiuofficial@gmail.com</a>
+            </div>
+            <div class="contact-item">
+                <h3>Social Media</h3>
+                <div class="social-icons">
+                    <a href="https://www.fb.com/alhidayaiu" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/alhidayaiu" target="_blank"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="card2">
+    <div class="location-container" style="text-align: center;">
+        <div class="address-card">
+            
+            <h2>Our Campus</h2>
+            <p>Al Hidaya Islamic University<br>
+            Ulitil, Mattannur, Kannur,<br>
+            Kerala, India- 670702</p>
+           
+        </div>
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3903.2818150115886!2d75.64005747505965!3d11.954979888274714!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba43302280cb66d%3A0x5d33142ba341dee4!2sAl%20Hidaya%20Islamic%20University!5e0!3m2!1sen!2sin!4v1774492392868!5m2!1sen!2sin" width="600" height="450" style="border:0; border-radius: 20px; margin-top: 10px; margin-bottom: 30px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </div>
+</section>
+
+
+    <div style="text-align:center; padding: 40px 0; color: #777; font-size: 0.9rem;">
+        <p><i>"Developing scholars beneficial for the Islamic heritage and culture."</i></p>
+        <p style="color:var(--gold); font-weight:bold;">Sayyid Abbas Ali Shihab Thangal Balawi</p>
+        <p>&copy; 2026 Al Hidaya Islamic University</p>
+    </div>
+
+</div>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+</body>
+</html>
